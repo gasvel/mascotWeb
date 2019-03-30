@@ -1,5 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import logo from './logo.svg';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ButtonAppBar from './AppNav';
+import PublicationCard from './PublicationCard';
 import './App.css';
 
 class App extends Component {
@@ -8,41 +20,26 @@ class App extends Component {
     super(props);
 
     this.state = {
-      posts: null,
+      posts: [],
     };
   }
 
+
+
   componentDidMount(){
-    fetch("http://localhost:3000/posts").then(response => response.json() ).then(data => this.setState({posts: data}));
+    fetch("http://localhost:3000/posts").then(response => response.json() ).then(data => {console.log(data);this.setState({posts: data})});
 
   }
 
-  render() {
+  render(props) {
     const {posts} = this.state;
+
     return (
       <div className="App">
-        <nav className="navbar navbar-dark bg-primary">
-
-        <a className="navbar-brand" href="#">Navbar</a>
-          <ul className="nav mr-auto mt-2 mt-lg-0">
-            <li className="nav-item">
-              <a className="nav-link active" href="https://google.com">Home <span className="sr-only">(current)</span></a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Link</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#" >Disabled</a>
-            </li>
-          </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
-            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </nav>
+        <ButtonAppBar></ButtonAppBar>
         <div>
-          <ul>{posts.map((post)=>
-            <li key={post.id}><h3>{post.title}</h3></li>)}</ul>
+          {posts.map((post)=>
+            <PublicationCard key={post.id} title={post.title} body={post.body} user={post.user.name}></PublicationCard>)}
         </div>
 
       </div>
