@@ -25,7 +25,7 @@ const styles = {
 };
 
 function PublicationCard(props) {
-  const { classes,title,body,user } = props;
+  const { classes,title,body,creado } = props;
   const bull = <span className={classes.bullet}>•</span>;
   return (
     <Card className={classes.card}>
@@ -35,7 +35,7 @@ function PublicationCard(props) {
           {title}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Publicado por: {user}
+          Fecha de publicacion: {creado}
         </Typography>
         <Typography component="p">
           {body}
