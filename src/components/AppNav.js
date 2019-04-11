@@ -33,7 +33,7 @@ function ButtonAppBar(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             MascotApp
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" onClick={props.handler}>Login</Button>
         </Toolbar>
       </AppBar>
     </div>

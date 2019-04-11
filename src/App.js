@@ -1,35 +1,44 @@
 import React, { Component } from 'react';
-import ButtonAppBar from './AppNav';
-import PublicationCard from './PublicationCard';
+import ButtonAppBar from './components/AppNav';
 import './App.css';
+import { Home } from './components/Home';
+import { Login } from './components/Login';
+
+function Section(props){
+  const sectionN = props.section;
+  console.log(sectionN);
+  if(sectionN === "home"){
+    return <Home/>;
+  }
+  else{
+    return <Login/>;
+  }
+}
 
 class App extends Component {
 
   constructor(props){
     super(props);
+    this.handler = this.handler.bind(this)
 
     this.state = {
-      posts: [],
+      section: "home",
     };
   }
 
-
-
-  componentDidMount(){
-    fetch("http://localhost:3000/posts/list").then(response => response.json() ).then(data => {console.log(data);this.setState({posts: data})});
-
+  handler(sectionN){
+    this.setState({section: sectionN})
   }
 
+  
+
   render(props) {
-    const {posts} = this.state;
+    const {section} = this.state;
 
     return (
       <div className="App">
-        <ButtonAppBar></ButtonAppBar>
-        <div>
-          {posts.map((post)=>
-            <PublicationCard key={post.id} title={post.title} body={post.body} creado={post.created_at}></PublicationCard>)}
-        </div>
+        <ButtonAppBar handler={this.handler}></ButtonAppBar>
+        <Section section= {this.state.section}/>
 
       </div>
           );

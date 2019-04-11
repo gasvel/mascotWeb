@@ -1,0 +1,14 @@
+.card {
+      width: 350px;
+      height: 250px;
+      display: inline-block !important;
+      margin: 20px;
+    }
+    .bullet {
+      display: inline-block;
+      margin: 0 2px;
+      transform: 'scale(0.8)';
+    }
+    .pos{
+      margin-bottom: 12px;
+    }
