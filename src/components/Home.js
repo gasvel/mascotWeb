@@ -1,6 +1,8 @@
 import React from 'react';
 import {PublicationCard} from './PublicationCard';
 
+import './Home.css';
+
 
 export class Home extends React.Component{
 
@@ -24,6 +26,7 @@ export class Home extends React.Component{
     return (
 
         <div>
+          
           {posts.map((post)=>
             <PublicationCard  key={post.id} title={post.title} body={post.body} creado={post.created_at}></PublicationCard>)}
         </div>

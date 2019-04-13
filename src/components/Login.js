@@ -1,4 +1,6 @@
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
+
 
 
 export class Login extends React.Component {
@@ -10,22 +12,21 @@ export class Login extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
       }
     
-      handleChange(event) {
-        this.setState({mail: event.target.value});
-      }
+      handleChange = name => event => {
+        this.setState({ [name]: event.target.value });
+      };
+    
     
       handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.mail);
+        alert('A name was submitted: ' + this.state.mail + this.state.password);
         event.preventDefault();
       }
     
       render() {
         return (
           <form onSubmit={this.handleSubmit}>
-            <label>
-              Mail:
-              <input type="text" value={this.state.mail} onChange={this.handleChange} />
-            </label>
+            <TextField label="Email" value={this.state.mail} onChange={this.handleChange("mail")}/>
+            <TextField label="Password" type="password" value={this.state.password} onChange={this.handleChange("password")}/>
 
             <input type="submit" value="Submit" />
           </form>

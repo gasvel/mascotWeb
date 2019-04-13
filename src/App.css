@@ -29,3 +29,13 @@
     transform: rotate(360deg);
   }
 }
+
+.sidebar:disabled{
+  width: 20%;
+  display: none;
+}
+
+.sidebar{
+  width: 20%;
+  display: block;
+}

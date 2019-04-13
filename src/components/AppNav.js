@@ -8,40 +8,33 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-};
 
-function ButtonAppBar(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
+
+export default class AppNav extends React.Component{
+
+  ChangeView=(e)=>{
+    this.props.handler(e.target.name);
+  }
+
+  OpenSidebar=(e)=>{
+    this.props.sidebarHandler();
+  }
+
+  render(){
+
+    return (
+    <div className='root'>
       <AppBar position="static">
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+          <IconButton className='menuButton' onClick={this.OpenSidebar} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            MascotApp
-          </Typography>
-          <Button color="inherit" onClick={props.handler}>Login</Button>
+          <Button name='home' color="inherit" onClick={this.ChangeView}>MascotApp</Button>
+
+          <Button color="inherit" onClick={this.ChangeView}>Login</Button>
         </Toolbar>
       </AppBar>
     </div>
-  );
+  );}
 }
 
-ButtonAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ButtonAppBar);
